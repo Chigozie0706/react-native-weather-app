@@ -12,8 +12,8 @@ This React Native mobile app fetches and displays real-time weather data from an
 ## Screenshots
 
 <div style="display: flex;"> 
-<img src="assets/images/weather_app1 1.jpg" alt="Screenshot 1" width="300" style="margin-right: 10px;"> 
-<img src="assets/images/weather_app2 2.jpg" alt="Screenshot 2" width="300" style="margin-right: 10px;"> 
+<img src="assets/images/weather_app1.jpg" alt="Screenshot 1" width="300" style="margin-right: 10px;"> 
+<img src="assets/images/weather_app2.jpg" alt="Screenshot 2" width="300" style="margin-right: 10px;"> 
 </div>
 
 ## Technologies Used
