@@ -1,19 +1,53 @@
-# Welcome to your Expo app 👋
+# Weather App - React Native
+
+This React Native mobile app fetches and displays real-time weather data from an external API, providing users with the latest weather conditions for various locations. Users can search for a city to view current weather details, making it an excellent project for learning how to work with APIs and implementing navigation in React Native.
+
+## Features
+
+- Fetches real-time weather data from an external API.
+- Displays current weather conditions, including temperature, humidity, and wind speed.
+- Allows users to search for weather details by city.
+- Smooth and responsive navigation for an intuitive user experience.
+
+## Screenshots
+
+<div style="display: flex;"> 
+<img src="assets/images/weather_app1 1.jpg" alt="Screenshot 1" width="300" style="margin-right: 10px;"> 
+<img src="assets/images/weather_app2 2.jpg" alt="Screenshot 2" width="300" style="margin-right: 10px;"> 
+</div>
+
+## Technologies Used
+
+- **React Native**: Mobile app development framework
+- **Expo**: Tool for building React Native apps
+- **JavaScript**: Core programming language used
+
+## Installation
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-## Get started
-
-1. Install dependencies
+1. Clone the repository:
 
    ```bash
-   npm install
+   git clone https://github.com/Chigozie0706/react-native-blog-post.git
    ```
 
-2. Start the app
+2. Navigate to the current directory
 
    ```bash
-    npx expo start
+   cd react-native-blog-post
+   ```
+
+3. Install dependencies
+
+   ```bash
+   pnpm install
+   ```
+
+4. Start the app
+
+   ```bash
+    pnpm expo start
    ```
 
 In the output, you'll find options to open the app in a
@@ -24,16 +58,6 @@ In the output, you'll find options to open the app in a
 - [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
 ## Learn more
 
@@ -48,4 +72,3 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
-"# react-native-weather-app" 
