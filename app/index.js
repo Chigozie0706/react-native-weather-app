@@ -14,13 +14,26 @@ import { TouchableOpacity } from "react-native";
 import { MagnifyingGlassIcon } from "react-native-heroicons/outline";
 import { useCallback, useState } from "react";
 import { debounce } from "lodash";
-import { fetchLocations } from "../api/weather";
+import { fetchLocations, fetchWeatherForeCast } from "../api/weather";
 
 export default function Index() {
   const [showSearch, toggleSearch] = useState(false);
-  const [locations, setLocations] = useState([1, 2, 3]);
+  const [locations, setLocations] = useState([]);
+  const [weather, setWeather] = useState({});
 
-  const handleSearcch = (value) => {
+  const handleLocation = (loc) => {
+    console.log("location", loc);
+    setLocations({});
+    fetchWeatherForeCast({
+      cityName: loc.name,
+      days: "7",
+    }).then((data) => {
+      setWeather(data);
+      console.log("got data", data);
+    });
+  };
+
+  const handleSearch = (value) => {
     if (value.length > 2) {
       fetchLocations({ cityName: value }).then((data) => {
         console.log("got location", data);
@@ -30,12 +43,17 @@ export default function Index() {
     console.log(value);
   };
 
-  const handleLocation = (loc) => {
-    console.log("location", loc);
+  // Correctly memoize the debounced function
+  const debouncedSearch = useCallback(debounce(handleSearch, 1200), [
+    handleSearch,
+  ]);
+
+  const handleTextToDebounce = (value) => {
+    debouncedSearch(value);
   };
 
-  const handleTextToDebounce = () =>
-    useCallback(debounce(handleSearcch, 1200), []);
+  const { current, location } = weather;
+
   return (
     <View className="flex-1 relative">
       <StatusBar style="light" />
@@ -51,7 +69,7 @@ export default function Index() {
           >
             {showSearch ? (
               <TextInput
-                onChange={handleSearcch}
+                onChangeText={handleTextToDebounce}
                 placeholder="Search city"
                 placeholderTextColor="lightgray"
                 className="pl-6 h-10 flex-1 text-base text-white"
@@ -73,12 +91,23 @@ export default function Index() {
           {locations.length > 0 && showSearch ? (
             <View className="absolute w-full bg-gray-300 top-16 rounded-3xl">
               {locations.map((loc, Index) => {
+                let showBorder = Index + 1 != locations.length;
+                let borderClass = showBorder
+                  ? `border-b-2 border-b-grey-400`
+                  : "";
+
                 return (
                   <TouchableOpacity
                     key={Index}
-                    className="flex-row items-center border-0 p-3 px-4 mb-1 border-b-2 border-b-grey-400"
+                    onPress={() => handleLocation(loc)}
+                    className={
+                      "flex-row items-center border-0 p-3 px-4 mb-1 " +
+                      borderClass
+                    }
                   >
-                    <Text>London, United Kingdom</Text>
+                    <Text className="text-black text-lg ml-2">
+                      {loc?.name}, {loc?.country}
+                    </Text>
                   </TouchableOpacity>
                 );
               })}
@@ -87,7 +116,7 @@ export default function Index() {
         </View>
 
         <Text className=" text-white text-2xl text-center my-5">
-          London, United Kingdom
+          {location?.name}, {location?.country}
         </Text>
         {/* <Text className=" text-white ">HomeScreen</Text> */}
         <View className="flex-row justify-center">

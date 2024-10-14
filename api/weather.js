@@ -1,17 +1,17 @@
 import axios from "axios";
 import { apiKey } from "../constants";
 
-const foreCastEndPoint = (
+export const foreCastEndPoint = (
   params
 ) => `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${params.cityName}&days=${params.days}&aqi=no&alerts=no
 `;
 
-const locationEndPoint = (
+export const locationEndPoint = (
   params
 ) => `https://api.weatherapi.com/v1/search.json?key=${apiKey}&q=${params.cityName}
 `;
 
-const apiCall = async (endpoint) => {
+export const apiCall = async (endpoint) => {
   const options = {
     method: "GET",
     url: endpoint,
@@ -26,12 +26,12 @@ const apiCall = async (endpoint) => {
   }
 };
 
-const fetchWeatherForeCast = (params) => {
+export const fetchWeatherForeCast = (params) => {
   // let foreCastUrl = foreCastEndPoint(params)
   return apiCall(foreCastEndPoint(params));
 };
 
-const fetchLocations = (params) => {
+export const fetchLocations = (params) => {
   // let foreCastUrl = foreCastEndPoint(params)
   return apiCall(locationEndPoint(params));
 };
